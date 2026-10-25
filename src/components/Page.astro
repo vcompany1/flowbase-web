@@ -1,0 +1,896 @@
+---
+import { content, languages, APP_URL, CV_URL, LINKEDIN_URL, EMAIL } from '../i18n/content.js';
+
+const { lang = 'en' } = Astro.props;
+const t = content[lang];
+
+// Positions of the bars in the hero flow, in % of the track (start, length).
+// Same order as t.flow.rows. Colors follow the four bars of the FlowBase logo.
+const flowBars = [
+  { start: 0, len: 30, tone: 'light' },
+  { start: 21, len: 27, tone: 'mid' },
+  { start: 41, len: 33, tone: 'deep' },
+  { start: 66, len: 22, tone: 'mid' },
+  { start: 80, len: 20, tone: 'ink' },
+];
+const groupTones = ['light', 'mid', 'deep', 'ink'];
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/img/flowbase-icon.svg" />
+    {languages.map((l) => <link rel="alternate" hreflang={l.code} href={l.path} />)}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Outfit:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">{t.nav.skip}</a>
+
+    <header class="site-header wrap">
+      <a class="brand" href={languages.find((l) => l.code === lang)?.path} aria-label="FlowBase">
+        <svg viewBox="0 0 48 48" width="34" height="34" aria-hidden="true">
+          <rect x="7" y="8" width="19" height="6" rx="3" fill="#5FE3A8"></rect>
+          <rect x="14" y="18" width="27" height="6" rx="3" fill="#3FA97C"></rect>
+          <rect x="7" y="28" width="15" height="6" rx="3" fill="#2C7358"></rect>
+          <rect x="7" y="38" width="34" height="6" rx="3" fill="#1B2A23"></rect>
+        </svg>
+        <span>FlowBase</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#product">{t.nav.product}</a>
+        <a href="#roadmap">{t.nav.roadmap}</a>
+        <a href="#about">{t.nav.about}</a>
+      </nav>
+      <div class="header-end">
+        <nav class="langs" aria-label={t.nav.language}>
+          {languages.map((l) => (
+            <a href={l.path} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? 'true' : undefined}>
+              {l.label}
+            </a>
+          ))}
+        </nav>
+        <a class="btn btn-small" href={APP_URL}>{t.nav.demo}</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero wrap">
+        <h1>{t.hero.title}</h1>
+        <div class="hero-body">
+          <p class="lead">{t.hero.lead}</p>
+          <div class="ctas">
+            <a class="btn" href={APP_URL}>{t.hero.ctaDemo}</a>
+            <a class="btn btn-ghost" href="#product">{t.hero.ctaMore}</a>
+          </div>
+          <p class="demo-note">{t.hero.demoNote}</p>
+        </div>
+
+        <figure class="flow">
+          <ol class="flow-rows">
+            {t.flow.rows.map((row, i) => {
+              const bar = flowBars[i];
+              const alignEnd = bar.start > 50;
+              return (
+                <li class="flow-row" style={`--i:${i}`}>
+                  <span class="flow-label">{row.label}</span>
+                  <span class="flow-track">
+                    <span
+                      class={`flow-bar tone-${bar.tone}`}
+                      style={`left:${bar.start}%;width:${bar.len}%`}
+                    ></span>
+                    <span
+                      class={`flow-meta ${alignEnd ? 'end' : ''}`}
+                      style={alignEnd ? `right:${100 - bar.start - bar.len}%` : `left:${bar.start}%`}
+                    >
+                      <code>{row.code}</code> {row.detail}
+                    </span>
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+          <figcaption>{t.flow.caption}</figcaption>
+        </figure>
+      </section>
+
+      <section id="product" class="covers wrap">
+        <div class="section-head">
+          <h2>{t.covers.title}</h2>
+          <p>{t.covers.intro}</p>
+        </div>
+        <div class="groups">
+          {t.covers.groups.map((g, i) => (
+            <div class="group">
+              <span class={`pill tone-${groupTones[i]}`} aria-hidden="true"></span>
+              <h3>{g.name}</h3>
+              <ul>
+                {g.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="story">
+        <div class="wrap story-grid">
+          <div>
+            <h2>{t.story.title}</h2>
+            {t.story.body.map((p) => <p>{p}</p>)}
+            <p class="stack">{t.story.stack}</p>
+          </div>
+          <dl class="facts">
+            {t.story.facts.map((f) => (
+              <div>
+                <dt>{f.title}</dt>
+                <dd>{f.text}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section id="roadmap" class="roadmap wrap">
+        <div class="section-head">
+          <h2>{t.roadmap.title}</h2>
+          <p>{t.roadmap.intro}</p>
+        </div>
+        <ul class="modules">
+          {t.roadmap.items.map((m) => (
+            <li class={`module status-${m.status}`}>
+              <span class="module-name">{m.name}</span>
+              <span class="module-desc">{m.desc}</span>
+              <span class="module-status">
+                <span class="meter" aria-hidden="true"><span></span></span>
+                {t.roadmap.status[m.status]}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="about" class="about wrap">
+        <h2>{t.about.title}</h2>
+        <div class="about-grid">
+          <img src="/img/victor.jpg" width="144" height="144" alt={t.about.name} loading="lazy" />
+          <div>
+            <p class="about-name">{t.about.name}</p>
+            <p class="about-role">{t.about.role}</p>
+            {t.about.body.map((p) => <p>{p}</p>)}
+            <p class="about-open">{t.about.open}</p>
+            <div class="ctas">
+              <a class="btn" href={CV_URL}>{t.about.cv}</a>
+              <a class="btn btn-ghost" href={LINKEDIN_URL}>{t.about.linkedin}</a>
+              <a class="btn btn-ghost" href={`mailto:${EMAIL}`}>{t.about.email}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects wrap">
+        <h2>{t.projects.title}</h2>
+        <ul>
+          {t.projects.items.map((p) => (
+            <li>
+              <h3>{p.name}</h3>
+              <p>{p.text}</p>
+              <a href={p.url}>{p.link}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <p>{t.footer.text}</p>
+      <a href={APP_URL}>{t.footer.app}</a>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --paper: #f6f9f7;
+    --surface: #ffffff;
+    --ink: #1b2a23;
+    --body: #34453d;
+    --muted: #5b6c64;
+    --line: #d8e2dd;
+    --light: #5fe3a8;
+    --mid: #3fa97c;
+    --deep: #2c7358;
+    --action: #1d7a58;
+    --action-hover: #17644a;
+    --measure: 62ch;
+    --display: 'Outfit', 'Instrument Sans', system-ui, sans-serif;
+    --sans: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--body);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--display);
+    color: var(--ink);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin: 0 0 1em;
+  }
+
+  a {
+    color: var(--action);
+    text-underline-offset: 0.18em;
+  }
+
+  a:hover {
+    color: var(--action-hover);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--mid);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.8em;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .wrap {
+    width: min(1120px, 100% - 32px);
+    margin-inline: auto;
+  }
+
+  .skip {
+    position: absolute;
+    left: -999px;
+  }
+
+  .skip:focus {
+    left: 16px;
+    top: 16px;
+    background: var(--surface);
+    padding: 8px 12px;
+    z-index: 10;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 46px;
+    padding: 0 20px;
+    border-radius: 999px;
+    background: var(--action);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.98rem;
+    text-decoration: none;
+    border: 1.5px solid var(--action);
+    transition: background-color 0.15s ease;
+  }
+
+  .btn:hover {
+    background: var(--action-hover);
+    border-color: var(--action-hover);
+    color: #fff;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+
+  .btn-ghost:hover {
+    background: var(--surface);
+    border-color: var(--mid);
+    color: var(--ink);
+  }
+
+  .btn-small {
+    min-height: 38px;
+    padding: 0 16px;
+    font-size: 0.92rem;
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Header */
+  .site-header {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding-block: 20px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .brand:hover {
+    color: var(--ink);
+  }
+
+  .nav {
+    display: flex;
+    gap: 24px;
+  }
+
+  .nav a,
+  .langs a {
+    color: var(--body);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .nav a:hover,
+  .langs a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+
+  .header-end {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .langs {
+    display: flex;
+    gap: 4px;
+  }
+
+  .langs a {
+    padding: 4px 7px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .langs a[aria-current='true'] {
+    color: var(--ink);
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+
+  /* Hero */
+  .hero {
+    padding-top: clamp(40px, 8vw, 96px);
+    padding-bottom: 72px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6.4vw, 4.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    max-width: 18ch;
+  }
+
+  .hero-body {
+    max-width: var(--measure);
+    margin-top: 28px;
+  }
+
+  .lead {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--body);
+    margin-bottom: 28px;
+  }
+
+  .demo-note {
+    margin-top: 18px;
+    font-size: 0.92rem;
+    color: var(--muted);
+    max-width: 56ch;
+  }
+
+  /* Flow figure: the document chain */
+  .flow {
+    margin: 56px 0 0;
+    padding: 28px 28px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+  }
+
+  .flow-rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+  }
+
+  .flow-row {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    align-items: start;
+    gap: 16px;
+  }
+
+  .flow-label {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 0.95rem;
+    padding-top: 3px;
+  }
+
+  .flow-track {
+    position: relative;
+    height: 58px;
+  }
+
+  .flow-bar {
+    position: absolute;
+    top: 0;
+    height: 26px;
+    border-radius: 13px;
+    transform-origin: left center;
+    animation: grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i) * 0.28s + 0.15s);
+  }
+
+  .flow-meta {
+    position: absolute;
+    top: 31px;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    color: var(--muted);
+    animation: appear 0.5s ease both;
+    animation-delay: calc(var(--i) * 0.28s + 0.55s);
+  }
+
+  .flow-meta.end {
+    text-align: right;
+  }
+
+  .flow figcaption {
+    margin-top: 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 0.92rem;
+    color: var(--muted);
+    max-width: 70ch;
+  }
+
+  .tone-light {
+    background: var(--light);
+  }
+
+  .tone-mid {
+    background: var(--mid);
+  }
+
+  .tone-deep {
+    background: var(--deep);
+  }
+
+  .tone-ink {
+    background: var(--ink);
+  }
+
+  @keyframes grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .flow-bar,
+    .flow-meta {
+      animation: none;
+    }
+  }
+
+  /* Sections */
+  .section-head {
+    max-width: var(--measure);
+    margin-bottom: 40px;
+  }
+
+  .section-head h2 {
+    margin-bottom: 14px;
+  }
+
+  .section-head p {
+    color: var(--muted);
+  }
+
+  .covers,
+  .roadmap,
+  .about,
+  .projects {
+    padding-block: 72px;
+  }
+
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .pill {
+    display: block;
+    width: 44px;
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  .group h3 {
+    margin-bottom: 12px;
+  }
+
+  .group ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .group li {
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.97rem;
+    line-height: 1.45;
+  }
+
+  /* Story */
+  .story {
+    background: var(--ink);
+    color: #c9d6cf;
+    padding-block: 80px;
+  }
+
+  .story h2 {
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .story-grid p {
+    max-width: var(--measure);
+  }
+
+  .stack {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #34463d;
+    font-size: 0.92rem;
+    color: #9fb3a9;
+  }
+
+  .facts {
+    margin: 0;
+    display: grid;
+    gap: 28px;
+  }
+
+  .facts div {
+    padding-left: 20px;
+    border-left: 3px solid var(--light);
+  }
+
+  .facts dt {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .facts dd {
+    margin: 0;
+  }
+
+  /* Roadmap */
+  .modules {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .module {
+    display: grid;
+    grid-template-columns: 13rem 1fr 11rem;
+    gap: 24px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .module-name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+
+  .module-desc {
+    color: var(--body);
+  }
+
+  .module-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .meter {
+    flex: none;
+    width: 56px;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1.5px var(--line);
+    overflow: hidden;
+  }
+
+  .meter span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--mid);
+    border-radius: 4px;
+  }
+
+  .status-live .meter span {
+    width: 100%;
+  }
+
+  .status-started .meter span {
+    width: 35%;
+  }
+
+  .status-live .module-status {
+    color: var(--deep);
+    font-weight: 600;
+  }
+
+  /* About */
+  .about h2 {
+    margin-bottom: 32px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 144px 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  .about-grid img {
+    width: 144px;
+    height: 144px;
+    border-radius: 16px;
+    object-fit: cover;
+  }
+
+  .about-grid > div {
+    max-width: var(--measure);
+  }
+
+  .about-name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .about-role {
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .about-open {
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  /* Projects */
+  .projects {
+    border-top: 1px solid var(--line);
+  }
+
+  .projects h2 {
+    margin-bottom: 28px;
+  }
+
+  .projects ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .projects h3 {
+    margin-bottom: 6px;
+  }
+
+  .projects p {
+    margin-bottom: 8px;
+    max-width: 48ch;
+  }
+
+  /* Footer */
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    padding-block: 28px 40px;
+    border-top: 1px solid var(--line);
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  .site-footer p {
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .nav {
+      display: none;
+    }
+    .groups {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .story-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .module {
+      grid-template-columns: 9rem 1fr;
+    }
+    .module-status {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: 600px) {
+    body {
+      font-size: 1rem;
+    }
+    .site-header {
+      gap: 12px;
+    }
+    .header-end {
+      gap: 8px;
+    }
+    .header-end .btn-small {
+      display: none;
+    }
+    .lead {
+      font-size: 1.08rem;
+    }
+    .flow {
+      padding: 20px 16px 16px;
+      margin-top: 40px;
+    }
+    .flow-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .flow-label {
+      padding-top: 0;
+    }
+    .flow-track {
+      height: 52px;
+    }
+    .flow-meta {
+      top: 30px;
+      font-size: 0.8rem;
+    }
+    .groups,
+    .projects ul {
+      grid-template-columns: 1fr;
+    }
+    .module {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .module-status {
+      grid-column: 1;
+    }
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .about-grid img {
+      width: 112px;
+      height: 112px;
+    }
+  }
+</style>

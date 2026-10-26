@@ -5,6 +5,8 @@ export const APP_URL = 'https://flowbase-erp.vercel.app/';
 export const CV_URL = 'https://vcompany1.github.io/vcompany/';
 export const LINKEDIN_URL = 'https://linkedin.com/in/victorcompany/';
 export const EMAIL = 'vcompany1@gmail.com';
+export const WHATSAPP_NUMBER = '41772141958'; // international format, no + or spaces
+export const WHATSAPP_DISPLAY = '+41 77 214 19 58';
 
 export const languages = [
   { code: 'en', label: 'EN', path: '/' },
@@ -144,7 +146,6 @@ export const content = {
       open: 'Open to Operational Excellence and Lean roles in the Basel region.',
       cv: 'Read my full CV',
       linkedin: 'LinkedIn',
-      email: 'Email me',
     },
     projects: {
       title: 'Other projects',
@@ -152,6 +153,13 @@ export const content = {
         { name: 'Española', text: 'Homemade Spanish tortilla, made in Basel. Its production runs on FlowBase.', url: 'https://espanola.ch', link: 'espanola.ch' },
         { name: 'Paella Basel', text: 'Valencian paella, cooked live at events around Basel.', url: 'https://paellabasel.ch', link: 'paellabasel.ch' },
       ],
+    },
+    contact: {
+      title: 'Get in touch',
+      text: 'Questions about FlowBase, a guided walkthrough of the demo, or a role? Write by email or WhatsApp, whichever suits you.',
+      email: 'Send an email',
+      whatsapp: 'Message on WhatsApp',
+      whatsappText: 'Hi Víctor, I’m writing about FlowBase.',
     },
     footer: {
       text: 'FlowBase is a project by Víctor Company, Basel.',
@@ -259,7 +267,6 @@ export const content = {
       open: 'Offen für Stellen in Operational Excellence und Lean in der Region Basel.',
       cv: 'Zum vollständigen Lebenslauf',
       linkedin: 'LinkedIn',
-      email: 'E-Mail schreiben',
     },
     projects: {
       title: 'Weitere Projekte',
@@ -267,6 +274,13 @@ export const content = {
         { name: 'Española', text: 'Hausgemachte spanische Tortilla aus Basel. Die Produktion läuft über FlowBase.', url: 'https://espanola.ch', link: 'espanola.ch' },
         { name: 'Paella Basel', text: 'Valencianische Paella, live gekocht an Anlässen in und um Basel.', url: 'https://paellabasel.ch', link: 'paellabasel.ch' },
       ],
+    },
+    contact: {
+      title: 'Kontakt',
+      text: 'Fragen zu FlowBase, eine geführte Tour durch die Demo oder eine Stelle? Schreiben Sie per E-Mail oder WhatsApp, wie es Ihnen lieber ist.',
+      email: 'E-Mail schreiben',
+      whatsapp: 'Über WhatsApp schreiben',
+      whatsappText: 'Hallo Víctor, ich schreibe Ihnen wegen FlowBase.',
     },
     footer: {
       text: 'FlowBase ist ein Projekt von Víctor Company, Basel.',
@@ -374,7 +388,6 @@ export const content = {
       open: 'Abierto a puestos de Excelencia Operacional y Lean en la región de Basilea.',
       cv: 'Ver mi CV completo',
       linkedin: 'LinkedIn',
-      email: 'Escríbeme',
     },
     projects: {
       title: 'Otros proyectos',
@@ -382,6 +395,13 @@ export const content = {
         { name: 'Española', text: 'Tortilla española casera, hecha en Basilea. Su producción funciona con FlowBase.', url: 'https://espanola.ch', link: 'espanola.ch' },
         { name: 'Paella Basel', text: 'Paella valenciana cocinada en directo en eventos de Basilea.', url: 'https://paellabasel.ch', link: 'paellabasel.ch' },
       ],
+    },
+    contact: {
+      title: 'Contacto',
+      text: '¿Preguntas sobre FlowBase, una visita guiada por la demo o un puesto? Escríbeme por correo o por WhatsApp, como prefieras.',
+      email: 'Enviar un correo',
+      whatsapp: 'Escribir por WhatsApp',
+      whatsappText: 'Hola Víctor, te escribo por FlowBase.',
     },
     footer: {
       text: 'FlowBase es un proyecto de Víctor Company, Basilea.',

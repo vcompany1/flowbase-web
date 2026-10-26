@@ -3,6 +3,7 @@ import { content, languages, APP_URL, CV_URL, LINKEDIN_URL, EMAIL } from '../i18
 
 const { lang = 'en' } = Astro.props;
 const t = content[lang];
+const contactHref = `mailto:${EMAIL}?subject=FlowBase`;
 
 // Positions of the bars in the hero flow, in % of the track (start, length).
 // Same order as t.flow.rows. Colors follow the four bars of the FlowBase logo.
@@ -51,6 +52,7 @@ const groupTones = ['light', 'mid', 'deep', 'ink'];
         <a href="#product">{t.nav.product}</a>
         <a href="#roadmap">{t.nav.roadmap}</a>
         <a href="#about">{t.nav.about}</a>
+        <a href={contactHref}>{t.nav.contact}</a>
       </nav>
       <div class="header-end">
         <nav class="langs" aria-label={t.nav.language}>
@@ -72,6 +74,7 @@ const groupTones = ['light', 'mid', 'deep', 'ink'];
           <div class="ctas">
             <a class="btn" href={APP_URL}>{t.hero.ctaDemo}</a>
             <a class="btn btn-ghost" href="#product">{t.hero.ctaMore}</a>
+            <a class="btn btn-ghost" href={contactHref}>{t.hero.ctaContact}</a>
           </div>
           <p class="demo-note">{t.hero.demoNote}</p>
         </div>
@@ -169,7 +172,7 @@ const groupTones = ['light', 'mid', 'deep', 'ink'];
           <div class="ctas">
             <a class="btn" href={CV_URL}>{t.about.cv}</a>
             <a class="btn btn-ghost" href={LINKEDIN_URL}>{t.about.linkedin}</a>
-            <a class="btn btn-ghost" href={`mailto:${EMAIL}`}>{t.about.email}</a>
+            <a class="btn btn-ghost" href={contactHref}>{t.about.email}</a>
           </div>
         </div>
       </section>

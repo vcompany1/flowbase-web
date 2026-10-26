@@ -50,13 +50,14 @@ export const content = {
       description:
         'FlowBase connects purchasing, production, stock by lot, sales and invoicing for small manufacturers. Try the live demo, no sign-up needed.',
     },
-    nav: { product: 'What it covers', roadmap: 'Roadmap', about: 'About', demo: 'Try the demo', language: 'Language', skip: 'Skip to content' },
+    nav: { product: 'What it covers', roadmap: 'Roadmap', about: 'About', contact: 'Contact', demo: 'Try the demo', language: 'Language', skip: 'Skip to content' },
     hero: {
       title: 'From purchase order to invoice, in one flow.',
       lead:
         'FlowBase is an ERP and MRP for small manufacturers. Purchasing, bills of materials, production, stock by lot, sales and invoicing work as one connected system, and it already runs a food business in Basel every day.',
       ctaDemo: 'Try the live demo',
       ctaMore: 'See what it covers',
+      ctaContact: 'Get in touch',
       demoNote:
         'No sign-up. On the login screen, choose Demo to explore AlpenWerk Möbel GmbH, a sample Swiss furniture maker, for 15 minutes. Everything you change is reset afterwards.',
     },
@@ -164,13 +165,14 @@ export const content = {
       description:
         'FlowBase verbindet Einkauf, Produktion, Lager nach Charge, Verkauf und Rechnungen für kleine Produktionsbetriebe. Live-Demo ohne Anmeldung.',
     },
-    nav: { product: 'Funktionen', roadmap: 'Roadmap', about: 'Über mich', demo: 'Demo testen', language: 'Sprache', skip: 'Zum Inhalt springen' },
+    nav: { product: 'Funktionen', roadmap: 'Roadmap', about: 'Über mich', contact: 'Kontakt', demo: 'Demo testen', language: 'Sprache', skip: 'Zum Inhalt springen' },
     hero: {
       title: 'Von der Bestellung bis zur Rechnung, in einem Fluss.',
       lead:
         'FlowBase ist ein ERP und MRP für kleine Produktionsbetriebe. Einkauf, Stücklisten, Produktion, Lager nach Charge, Verkauf und Rechnungen arbeiten als ein verbundenes System, und es steuert bereits täglich einen Lebensmittelbetrieb in Basel.',
       ctaDemo: 'Live-Demo testen',
       ctaMore: 'Funktionen ansehen',
+      ctaContact: 'Kontakt aufnehmen',
       demoNote:
         'Ohne Anmeldung. Wählen Sie im Login Demo und erkunden Sie 15 Minuten lang AlpenWerk Möbel GmbH, einen fiktiven Schweizer Möbelhersteller. Alle Änderungen werden danach zurückgesetzt.',
     },
@@ -278,13 +280,14 @@ export const content = {
       description:
         'FlowBase conecta compras, producción, stock por lote, ventas y facturación para pequeños fabricantes. Prueba la demo en vivo, sin registro.',
     },
-    nav: { product: 'Qué cubre', roadmap: 'Roadmap', about: 'Sobre mí', demo: 'Probar la demo', language: 'Idioma', skip: 'Saltar al contenido' },
+    nav: { product: 'Qué cubre', roadmap: 'Roadmap', about: 'Sobre mí', contact: 'Contacto', demo: 'Probar la demo', language: 'Idioma', skip: 'Saltar al contenido' },
     hero: {
       title: 'Del pedido de compra a la factura, en un solo flujo.',
       lead:
         'FlowBase es un ERP y MRP para pequeños fabricantes. Compras, listas de materiales, producción, stock por lote, ventas y facturación funcionan como un único sistema conectado, y ya gestiona cada día un negocio de alimentación en Basilea.',
       ctaDemo: 'Probar la demo en vivo',
       ctaMore: 'Ver qué cubre',
+      ctaContact: 'Contactar',
       demoNote:
         'Sin registro. En la pantalla de acceso, elige Demo para explorar durante 15 minutos AlpenWerk Möbel GmbH, un fabricante suizo de muebles de ejemplo. Todo lo que cambies se restablece al terminar.',
     },

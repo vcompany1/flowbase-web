@@ -161,18 +161,15 @@ const groupTones = ['light', 'mid', 'deep', 'ink'];
 
       <section id="about" class="about wrap">
         <h2>{t.about.title}</h2>
-        <div class="about-grid">
-          <img src="/img/victor.jpg" width="144" height="144" alt={t.about.name} loading="lazy" />
-          <div>
-            <p class="about-name">{t.about.name}</p>
-            <p class="about-role">{t.about.role}</p>
-            {t.about.body.map((p) => <p>{p}</p>)}
-            <p class="about-open">{t.about.open}</p>
-            <div class="ctas">
-              <a class="btn" href={CV_URL}>{t.about.cv}</a>
-              <a class="btn btn-ghost" href={LINKEDIN_URL}>{t.about.linkedin}</a>
-              <a class="btn btn-ghost" href={`mailto:${EMAIL}`}>{t.about.email}</a>
-            </div>
+        <div class="about-body">
+          <p class="about-name">{t.about.name}</p>
+          <p class="about-role">{t.about.role}</p>
+          {t.about.body.map((p) => <p>{p}</p>)}
+          <p class="about-open">{t.about.open}</p>
+          <div class="ctas">
+            <a class="btn" href={CV_URL}>{t.about.cv}</a>
+            <a class="btn btn-ghost" href={LINKEDIN_URL}>{t.about.linkedin}</a>
+            <a class="btn btn-ghost" href={`mailto:${EMAIL}`}>{t.about.email}</a>
           </div>
         </div>
       </section>
@@ -739,21 +736,7 @@ const groupTones = ['light', 'mid', 'deep', 'ink'];
     margin-bottom: 32px;
   }
 
-  .about-grid {
-    display: grid;
-    grid-template-columns: 144px 1fr;
-    gap: 36px;
-    align-items: start;
-  }
-
-  .about-grid img {
-    width: 144px;
-    height: 144px;
-    border-radius: 16px;
-    object-fit: cover;
-  }
-
-  .about-grid > div {
+  .about-body {
     max-width: var(--measure);
   }
 
@@ -883,14 +866,6 @@ const groupTones = ['light', 'mid', 'deep', 'ink'];
     }
     .module-status {
       grid-column: 1;
-    }
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .about-grid img {
-      width: 112px;
-      height: 112px;
     }
   }
 </style>

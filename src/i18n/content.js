@@ -63,6 +63,12 @@ export const content = {
       demoNote:
         'No sign-up. On the login screen, choose Demo to explore AlpenWerk Möbel GmbH, a sample Swiss furniture maker, for 15 minutes. Everything you change is reset afterwards.',
     },
+    video: {
+      title: 'See it in 76 seconds',
+      text: 'Follow one oak table through FlowBase: its bill of materials, today’s production plan, the run on the shop floor, the delivery note and the customer’s own portal.',
+      label: 'Video: a tour of FlowBase following one oak table',
+      note: 'Recorded in the live demo. No sound needed.',
+    },
     flow: {
       caption:
         'One customer order, followed end to end. Each document links to the one before it, so any lot can be traced back to its supplier.',
@@ -184,6 +190,12 @@ export const content = {
       demoNote:
         'Ohne Anmeldung. Wählen Sie im Login Demo und erkunden Sie 15 Minuten lang AlpenWerk Möbel GmbH, einen fiktiven Schweizer Möbelhersteller. Alle Änderungen werden danach zurückgesetzt.',
     },
+    video: {
+      title: 'In 76 Sekunden erklärt',
+      text: 'Folgen Sie einem Eichentisch durch FlowBase: Stückliste, Tagesplan, Fertigung, Lieferschein und das Portal des Kunden.',
+      label: 'Video: ein Rundgang durch FlowBase am Beispiel eines Eichentischs',
+      note: 'Aufgenommen in der Live-Demo. Ohne Ton verständlich.',
+    },
     flow: {
       caption:
         'Ein Kundenauftrag, von Anfang bis Ende verfolgt. Jedes Dokument verweist auf das vorherige, so lässt sich jede Charge bis zum Lieferanten zurückverfolgen.',
@@ -304,6 +316,12 @@ export const content = {
       ctaContact: 'Contactar',
       demoNote:
         'Sin registro. En la pantalla de acceso, elige Demo para explorar durante 15 minutos AlpenWerk Möbel GmbH, un fabricante suizo de muebles de ejemplo. Todo lo que cambies se restablece al terminar.',
+    },
+    video: {
+      title: 'Míralo en 76 segundos',
+      text: 'Sigue una mesa de roble a través de FlowBase: su lista de materiales, el plan de producción del día, la fabricación, el albarán y el portal del propio cliente.',
+      label: 'Vídeo: un recorrido por FlowBase siguiendo una mesa de roble',
+      note: 'Grabado en la demo en vivo. Se entiende sin sonido.',
     },
     flow: {
       caption:
